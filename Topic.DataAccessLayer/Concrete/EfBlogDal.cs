@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,21 @@ namespace Topic.DataAccessLayer.Concrete
     {
         public EfBlogDal(TopicContext context) : base(context)
         {
+        }
+
+        public List<Blog> GetBlogsByCategoryId(int id)
+        {
+            return _context.Blogs.ToList().Where(x=> x.CategoryId == id).ToList();
+        }
+
+        public List<Blog> GetBlogsWithCategories()
+        {
+            return _context.Blogs.Include(x=>x.Category).ToList();
+        }
+
+        public Blog GetBlogWithCategoryById(int id)
+        {
+            return _context.Blogs.Include(x=>x.Category).FirstOrDefault(x => x.CategoryId == id);
         }
     }
 }

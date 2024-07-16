@@ -11,8 +11,25 @@ namespace Topic.Business.Concrete
 {
     public class BlogManager : GenericManager<Blog>, IBlogService
     {
-        public BlogManager(IGenericDal<Blog> genericDal) : base(genericDal)
+        private readonly IBlogDal _blogDal;
+        public BlogManager(IGenericDal<Blog> genericDal, IBlogDal blogDal) : base(genericDal)
         {
+            _blogDal = blogDal;
+        }
+
+        public List<Blog> TGetBlogsByCategoryId(int id)
+        {
+            return _blogDal.GetBlogsByCategoryId(id);
+        }
+
+        public List<Blog> TGetBlogsWithCategories()
+        {
+            return _blogDal.GetBlogsWithCategories();
+        }
+
+        public Blog TGetBlogWithCategoryById(int id)
+        {
+            return _blogDal.GetBlogWithCategoryById(id);
         }
     }
 }

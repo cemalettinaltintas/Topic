@@ -18,5 +18,8 @@ namespace Topic.DataAccessLayer.Context
         public DbSet<Category> Categories { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Manuel> Manuels { get; set; }
+        public DbSet<FAQ> FAQs { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+
     }
 }
